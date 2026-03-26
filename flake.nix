@@ -14,18 +14,21 @@
       overlays.default = final: prev: {
         claude-code = final.callPackage ./pkgs/claude-code.nix {};
         codex       = final.callPackage ./pkgs/codex.nix {};
+        goose       = final.callPackage ./pkgs/goose.nix {};
         opencode    = final.callPackage ./pkgs/opencode.nix {};
       };
 
       packages = forEachSystem (system: let p = pkgsFor system; in {
         claude-code = p.claude-code;
         codex       = p.codex;
+        goose       = p.goose;
         opencode    = p.opencode;
       });
 
       checks = forEachSystem (system: let p = pkgsFor system; in {
         claude-code = p.claude-code;
         codex       = p.codex;
+        goose       = p.goose;
         opencode    = p.opencode;
       });
 

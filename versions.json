@@ -35,6 +35,24 @@
       "hash": "sha256-oIAVnLL/V0GvVoXNKixrf1qf3LizJ1SlKq2t0PJ3G0o="
     }
   },
+  "goose": {
+    "x86_64-linux": {
+      "version": "1.28.0",
+      "hash": "sha256-QQSfb3sfRg84B8W5G97Vhp/w8bCY18BncuNZBk1lB0s="
+    },
+    "aarch64-linux": {
+      "version": "1.28.0",
+      "hash": "sha256-1RdTIzlMq/o0W0dMGugP62FFa+yWZpjL9ZxXCBqhJPc="
+    },
+    "aarch64-darwin": {
+      "version": "1.28.0",
+      "hash": "sha256-v6A6AbXpvZf73599Y1hQ9G9z9i90rtv0I/5apXvPF/U="
+    },
+    "x86_64-darwin": {
+      "version": "1.28.0",
+      "hash": "sha256-EAOUrHjzMrCfi1ZLMDdtnAdzFm2ITPkNuTa4AZaQcis="
+    }
+  },
   "opencode": {
     "x86_64-linux": {
       "version": "1.3.2",
