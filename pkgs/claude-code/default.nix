@@ -7,7 +7,7 @@
 }:
 
 let
-  versions = builtins.fromJSON (builtins.readFile ../versions.json);
+  versions = builtins.fromJSON (builtins.readFile ../../versions.json);
   info = versions.claude-code.${stdenvNoCC.hostPlatform.system}
     or (throw "claude-code: unsupported platform ${stdenvNoCC.hostPlatform.system}");
 

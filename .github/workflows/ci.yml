@@ -29,5 +29,11 @@ jobs:
       - name: Build codex
         run: nix build .#codex --no-link
 
+      - name: Build goose
+        run: nix build .#goose --no-link
+
       - name: Build opencode
         run: nix build .#opencode --no-link
+
+      - name: Build rtk
+        run: nix build .#rtk --no-link

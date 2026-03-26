@@ -25,7 +25,7 @@ jobs:
       - name: Check for changes
         id: changes
         run: |
-          if git diff --quiet versions.json; then
+          if git diff --quiet versions.json utils-versions.json; then
             echo "has_updates=false" >> "$GITHUB_OUTPUT"
           else
             echo "has_updates=true" >> "$GITHUB_OUTPUT"
@@ -43,12 +43,12 @@ jobs:
           BRANCH="auto-update/agents"
 
           # Capture diff before committing
-          DIFF=$(git diff versions.json)
+          DIFF=$(git diff versions.json utils-versions.json)
 
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git checkout -B "$BRANCH"
-          git add versions.json
+          git add versions.json utils-versions.json
           git commit -m "chore: update agent versions"
           git push --force origin "$BRANCH"
 

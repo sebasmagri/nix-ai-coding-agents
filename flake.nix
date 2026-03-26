@@ -12,10 +12,11 @@
       }).extend self.overlays.default;
     in {
       overlays.default = final: prev: {
-        claude-code = final.callPackage ./pkgs/claude-code.nix {};
-        codex       = final.callPackage ./pkgs/codex.nix {};
-        goose       = final.callPackage ./pkgs/goose.nix {};
-        opencode    = final.callPackage ./pkgs/opencode.nix {};
+        claude-code = final.callPackage ./pkgs/claude-code {};
+        codex       = final.callPackage ./pkgs/codex {};
+        goose       = final.callPackage ./pkgs/goose {};
+        opencode    = final.callPackage ./pkgs/opencode {};
+        rtk         = final.callPackage ./pkgs/utils/rtk {};
       };
 
       packages = forEachSystem (system: let p = pkgsFor system; in {
@@ -23,6 +24,7 @@
         codex       = p.codex;
         goose       = p.goose;
         opencode    = p.opencode;
+        rtk         = p.rtk;
       });
 
       checks = forEachSystem (system: let p = pkgsFor system; in {
@@ -30,6 +32,7 @@
         codex       = p.codex;
         goose       = p.goose;
         opencode    = p.opencode;
+        rtk         = p.rtk;
       });
 
       devShells = forEachSystem (system: let p = pkgsFor system; in {

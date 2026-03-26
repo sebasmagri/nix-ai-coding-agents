@@ -8,7 +8,7 @@
 }:
 
 let
-  versions = builtins.fromJSON (builtins.readFile ../versions.json);
+  versions = builtins.fromJSON (builtins.readFile ../../versions.json);
   info = versions.goose.${stdenv.hostPlatform.system}
     or (throw "goose: unsupported platform ${stdenv.hostPlatform.system}");
 

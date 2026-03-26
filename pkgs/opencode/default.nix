@@ -8,7 +8,7 @@
 }:
 
 let
-  versions = builtins.fromJSON (builtins.readFile ../versions.json);
+  versions = builtins.fromJSON (builtins.readFile ../../versions.json);
   info = versions.opencode.${stdenvNoCC.hostPlatform.system}
     or (throw "opencode: unsupported platform ${stdenvNoCC.hostPlatform.system}");
 

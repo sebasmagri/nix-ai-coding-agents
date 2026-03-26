@@ -9,7 +9,7 @@
 }:
 
 let
-  versions = builtins.fromJSON (builtins.readFile ../versions.json);
+  versions = builtins.fromJSON (builtins.readFile ../../versions.json);
   info = versions.codex.${stdenv.hostPlatform.system}
     or (throw "codex: unsupported platform ${stdenv.hostPlatform.system}");
 
