@@ -1,6 +1,7 @@
 # nix-ai-coding-agents
 
-Nix flake overlay packaging AI coding agents from prebuilt binaries.
+Nix flake overlay packaging AI coding agents and related utilities from
+prebuilt binaries.
 
 ## Agents
 
@@ -8,9 +9,16 @@ Nix flake overlay packaging AI coding agents from prebuilt binaries.
 |-------|-------------|---------|
 | [Claude Code](https://github.com/anthropics/claude-code) | Anthropic's agentic coding tool | Unfree |
 | [Codex](https://github.com/openai/codex) | OpenAI's lightweight coding agent | Apache 2.0 |
+| [Goose](https://github.com/block/goose) | Block's open-source AI coding agent | Apache 2.0 |
 | [OpenCode](https://github.com/anomalyco/opencode) | Terminal-native AI coding agent | MIT |
 
-All agents are packaged for `x86_64-linux`, `aarch64-linux`, `aarch64-darwin`,
+## Utilities
+
+| Utility | Description | License |
+|---------|-------------|---------|
+| [rtk](https://github.com/rtk-ai/rtk) | CLI proxy that reduces LLM token consumption | Apache 2.0 |
+
+All packages are built for `x86_64-linux`, `aarch64-linux`, `aarch64-darwin`,
 and `x86_64-darwin`.
 
 ## Usage
@@ -20,7 +28,9 @@ and `x86_64-darwin`.
 ```sh
 nix run github:sebasmagri/nix-ai-coding-agents#claude-code
 nix run github:sebasmagri/nix-ai-coding-agents#codex
+nix run github:sebasmagri/nix-ai-coding-agents#goose
 nix run github:sebasmagri/nix-ai-coding-agents#opencode
+nix run github:sebasmagri/nix-ai-coding-agents#rtk
 ```
 
 ### As a flake input
@@ -40,7 +50,7 @@ nix run github:sebasmagri/nix-ai-coding-agents#opencode
       pkgs = (import nixpkgs { system = "x86_64-linux"; }).extend
         nix-ai-coding-agents.overlays.default;
     in {
-      # pkgs.claude-code, pkgs.codex, pkgs.opencode are now available
+      # pkgs.claude-code, pkgs.codex, pkgs.goose, pkgs.opencode, pkgs.rtk are now available
     };
 }
 ```
@@ -54,7 +64,7 @@ nix run github:sebasmagri/nix-ai-coding-agents#opencode
 ### With home-manager
 
 ```nix
-home.packages = with pkgs; [ claude-code codex opencode ];
+home.packages = with pkgs; [ claude-code codex goose opencode rtk ];
 ```
 
 For declarative agent configuration (settings, MCP servers, instructions),
@@ -80,12 +90,12 @@ Or with a specific predicate:
 
 ## How it works
 
-Each agent is packaged as a `stdenv.mkDerivation` that downloads a prebuilt
-binary via `fetchurl`. Version and hash metadata lives in `versions.json`,
-keyed per agent and per platform.
+Each package is a `stdenv.mkDerivation` that downloads a prebuilt binary via
+`fetchurl`. Version and hash metadata lives in `versions.json` (agents) and
+`utils-versions.json` (utilities), keyed per package and per platform.
 
-A nightly GitHub Actions workflow runs `scripts/update-agents.sh` to check
-upstream releases, fetch new hashes, and open a PR with the changes.
+A GitHub Actions workflow runs `scripts/update-agents.sh` every 8 hours to
+check upstream releases, fetch new hashes, and open a PR with the changes.
 
 See [docs/DESIGN.md](docs/DESIGN.md) for the full design document.
 
