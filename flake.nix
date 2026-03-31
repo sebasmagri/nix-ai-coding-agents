@@ -35,6 +35,10 @@
         rtk         = p.rtk;
       });
 
+      homeManagerModules = {
+        rtk = import ./modules/programs/rtk.nix;
+      };
+
       devShells = forEachSystem (system: let p = pkgsFor system; in {
         default = p.mkShellNoCC {
           packages = [ p.jq p.gh p.nixfmt-rfc-style ];

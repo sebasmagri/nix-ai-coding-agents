@@ -4,7 +4,8 @@ This is a Nix flake that packages AI coding agents and related utilities from pr
 
 ## Repository layout
 
-- `flake.nix` — flake definition exporting `overlays.default`, `packages`, `checks`, and `devShells`
+- `flake.nix` — flake definition exporting `overlays.default`, `packages`, `checks`, `homeManagerModules`, and `devShells`
+- `modules/programs/` — Home Manager program modules (e.g. `rtk.nix`)
 - `versions.json` — per-agent, per-platform version and hash data (single source of truth for mutable data)
 - `utils-versions.json` — per-utility, per-platform version and hash data
 - `pkgs/<name>/` — per-agent directory with `default.nix` and `update.sh`

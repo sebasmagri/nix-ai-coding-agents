@@ -71,6 +71,35 @@ For declarative agent configuration (settings, MCP servers, instructions),
 use [home-manager's built-in `programs.claude-code`, `programs.codex`, and
 `programs.opencode` modules](https://github.com/nix-community/home-manager/tree/master/modules/programs).
 
+### rtk Home Manager module
+
+This flake provides a `programs.rtk` Home Manager module for declarative
+rtk configuration and agent integration. Import it alongside the overlay:
+
+```nix
+{
+  imports = [ nix-ai-coding-agents.homeManagerModules.rtk ];
+
+  programs.rtk = {
+    enable = true;
+    settings = {
+      display.max_width = 120;
+      telemetry.enabled = false;
+    };
+
+    # Transparent agent integrations (requires the corresponding
+    # programs.<agent>.enable = true)
+    enableClaudeCodeIntegration = true;
+    enableCodexIntegration = true;
+    enableOpenCodeIntegration = true;
+  };
+}
+```
+
+The integration options install hooks, plugins, or skills into each agent's
+configuration via the upstream Home Manager modules. Claude Code and OpenCode
+get transparent command rewriting; Codex gets a skill with prompt instructions.
+
 ### Unfree license note
 
 Claude Code has an unfree license. Consumers need to allow it explicitly:
