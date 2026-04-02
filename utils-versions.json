@@ -1,20 +1,20 @@
 {
   "rtk": {
     "x86_64-linux": {
-      "version": "0.34.2",
-      "hash": "sha256-QZs4IWyLEknMcjhtS7z+nngIveCvYxWcgmQ42lNPnlk="
+      "version": "0.34.3",
+      "hash": "sha256-pgfBe/3MwdSNyUyoHNOlRVIzKd9qN4No/RddgCNCXqU="
     },
     "aarch64-linux": {
-      "version": "0.34.2",
-      "hash": "sha256-/BaGNc9lcV2uXLTxHNdgRLTIJHAtUMMoBwt4qzH7bFE="
+      "version": "0.34.3",
+      "hash": "sha256-Cjr66ENaNSwy6qy47NdpUxRpKBkf78iy3nA/Ot8Qyfg="
     },
     "aarch64-darwin": {
-      "version": "0.34.2",
-      "hash": "sha256-3ZgtnLDYUv7XJLf1p+DyXWpmXuuUcLDK6/12B2s7m0E="
+      "version": "0.34.3",
+      "hash": "sha256-lF9kSnfl2jNnFCqZnEGk+kSNCkrj5hyKRQlLhSLboEc="
     },
     "x86_64-darwin": {
-      "version": "0.34.2",
-      "hash": "sha256-a3o0E0pkKj3iBmsd+FqY2BO1L4TL31/vqDTGHC0+2/U="
+      "version": "0.34.3",
+      "hash": "sha256-NZKCKaf+BkAWt81WfpMzJ4xmEiHioZGA1PGUNRaowfE="
     }
   }
 }
