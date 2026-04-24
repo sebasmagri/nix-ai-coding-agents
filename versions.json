@@ -1,20 +1,20 @@
 {
   "claude-code": {
     "x86_64-linux": {
-      "version": "2.1.118",
-      "hash": "sha256-ujY7JBCkcSDS1Ljs4uEf4LvF1ZrbEyno+4fqDzcPTkY="
+      "version": "2.1.119",
+      "hash": "sha256-zKQwU/BilJSVWWsRtv0bWc95ECrbE7rL5mmX5vrkHko="
     },
     "aarch64-linux": {
-      "version": "2.1.118",
-      "hash": "sha256-t3si/pPBVAnzxkvmeVD+EeX8F9HNMniRWWy4fdm+BJI="
+      "version": "2.1.119",
+      "hash": "sha256-OCqnPqSwf9jWmOMVm1754bhzn651BbqN3Si4pqYoGc4="
     },
     "aarch64-darwin": {
-      "version": "2.1.118",
-      "hash": "sha256-VOXT9lEJuJxgRvR0QJRNUpBsZi0eUXSPYgpDDSatNmU="
+      "version": "2.1.119",
+      "hash": "sha256-Mds0RDCdXQ+Lheh4Li3NhvMffkjBoeg9abCSaMe0+aI="
     },
     "x86_64-darwin": {
-      "version": "2.1.118",
-      "hash": "sha256-LNVUBw8FiN4F6e/YjB8HN3DLYg7T5fRbp9+DP8NBTBs="
+      "version": "2.1.119",
+      "hash": "sha256-UrO3XP6AxiaYKy/7Omzhx5eCTyV9wnXPCjwywgK2o98="
     }
   },
   "codex": {
