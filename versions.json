@@ -27,12 +27,12 @@
       "hash": "sha256-LQdlJ/11eGVvG4eQZQrck0SnQpmAs5mJQRVqtqBhVuY="
     },
     "aarch64-darwin": {
-      "version": "0.125.0",
-      "hash": "sha256-apJtwMuWOdNJtivtoZB8U8sTSXCefcnPxTJo9DjLdJ8="
+      "version": "0.128.0",
+      "hash": "sha256-8GggLoqJjCQMjAaEAbzNMLp7VvYfX/zRSD1UXUeq89U="
     },
     "x86_64-darwin": {
-      "version": "0.125.0",
-      "hash": "sha256-tGAZWE0VgUwjVpa+p1v/DTeObRSZeiaIRrZ1UB+1wIk="
+      "version": "0.128.0",
+      "hash": "sha256-x6CNIBH3fohAKhc8Rzzuw3MHpxCmgc3dJjV8M6AlqWE="
     }
   },
   "goose": {
