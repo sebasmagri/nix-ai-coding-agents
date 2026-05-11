@@ -55,20 +55,20 @@
   },
   "opencode": {
     "x86_64-linux": {
-      "version": "1.14.46",
-      "hash": "sha256-GdgMQDlpMOlq/j9jAAvCjZCUdg2qFsex1+dtyZnP68s="
+      "version": "1.14.48",
+      "hash": "sha256-0GEl3gdK+cF75kkTfivvWbd0x2aBMLAIb5vZm6Z7r4I="
     },
     "aarch64-linux": {
-      "version": "1.14.46",
-      "hash": "sha256-6zXqSnx3eIK8+dkR7pyPJeakInu97akQqiRx3qzzKRo="
+      "version": "1.14.48",
+      "hash": "sha256-REF53lUE7T1oxVRJ4q+O0sks19X4TsHo8wbKwP5JvVA="
     },
     "aarch64-darwin": {
-      "version": "1.14.46",
-      "hash": "sha256-/iVrbdhkPJQEtpBI/l3WUHZbjDoEqewxANwo16ySuK4="
+      "version": "1.14.48",
+      "hash": "sha256-UX09hz9iSmPaLU3h6mTPO9uK8mD5lCgU54eIpteWLSQ="
     },
     "x86_64-darwin": {
-      "version": "1.14.46",
-      "hash": "sha256-vkIQTuTxNycaxSnrRWYohSsaKGvOxa6n++1FEb0rHFo="
+      "version": "1.14.48",
+      "hash": "sha256-kS/SeLqsqsk8cQ82uGePJ3u4lBWmCGIUql/4nXkX2X4="
     }
   }
 }
