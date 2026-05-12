@@ -32,6 +32,7 @@ on `flake-utils`.
 | claude-code | `gh api repos/anthropics/claude-code/releases/latest` → `.tag_name`  | `https://storage.googleapis.com/claude-code-dist-86c565f3-f756-42ad-8dfa-d59b1c096819/claude-code-releases/{version}/{platform}/claude` |
 | codex       | `gh api repos/openai/codex/releases` → first non-prerelease `rust-v*` (note: Codex publishes both JS `v*` and Rust `rust-v*` tags; we filter for `rust-v*` and strip the prefix for the version) | `https://github.com/openai/codex/releases/download/rust-v{version}/codex-{triple}.tar.gz` |
 | opencode    | `gh api repos/anomalyco/opencode/releases` → first non-prerelease `v*` | `https://github.com/anomalyco/opencode/releases/download/v{version}/opencode-{platform}.{tar.gz,zip}` |
+| pi          | `gh api repos/badlogic/pi-mono/releases` → first non-prerelease `v*`  | `https://github.com/badlogic/pi-mono/releases/download/v{version}/pi-{platform}.tar.gz`              |
 
 ### Platform mappings
 

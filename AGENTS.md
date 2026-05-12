@@ -58,6 +58,6 @@ Same steps as adding an agent, but:
 
 ```sh
 nix flake check --no-build   # evaluation check (all platforms)
-nix build .#claude-code .#codex .#goose .#opencode .#rtk  # build on current host
+nix build .#claude-code .#codex .#goose .#opencode .#pi .#rtk  # build on current host
 bash scripts/update-agents.sh --dry-run     # verify version resolution
 ```
