@@ -11,6 +11,7 @@ prebuilt binaries.
 | [Codex](https://github.com/openai/codex) | OpenAI's lightweight coding agent | Apache 2.0 |
 | [Goose](https://github.com/block/goose) | Block's open-source AI coding agent | Apache 2.0 |
 | [OpenCode](https://github.com/anomalyco/opencode) | Terminal-native AI coding agent | MIT |
+| [Pi](https://github.com/badlogic/pi-mono) | Minimal, customizable terminal coding agent harness | MIT |
 
 ## Utilities
 
@@ -30,6 +31,7 @@ nix run github:sebasmagri/nix-ai-coding-agents#claude-code
 nix run github:sebasmagri/nix-ai-coding-agents#codex
 nix run github:sebasmagri/nix-ai-coding-agents#goose
 nix run github:sebasmagri/nix-ai-coding-agents#opencode
+nix run github:sebasmagri/nix-ai-coding-agents#pi
 nix run github:sebasmagri/nix-ai-coding-agents#rtk
 ```
 
@@ -50,7 +52,7 @@ nix run github:sebasmagri/nix-ai-coding-agents#rtk
       pkgs = (import nixpkgs { system = "x86_64-linux"; }).extend
         nix-ai-coding-agents.overlays.default;
     in {
-      # pkgs.claude-code, pkgs.codex, pkgs.goose, pkgs.opencode, pkgs.rtk are now available
+      # pkgs.claude-code, pkgs.codex, pkgs.goose, pkgs.opencode, pkgs.pi, pkgs.rtk are now available
     };
 }
 ```
@@ -64,7 +66,7 @@ nix run github:sebasmagri/nix-ai-coding-agents#rtk
 ### With home-manager
 
 ```nix
-home.packages = with pkgs; [ claude-code codex goose opencode rtk ];
+home.packages = with pkgs; [ claude-code codex goose opencode pi rtk ];
 ```
 
 For declarative agent configuration (settings, MCP servers, instructions),

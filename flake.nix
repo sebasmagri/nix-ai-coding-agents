@@ -16,6 +16,7 @@
         codex       = final.callPackage ./pkgs/codex {};
         goose       = final.callPackage ./pkgs/goose {};
         opencode    = final.callPackage ./pkgs/opencode {};
+        pi          = final.callPackage ./pkgs/pi {};
         rtk         = final.callPackage ./pkgs/utils/rtk {};
       };
 
@@ -24,6 +25,7 @@
         codex       = p.codex;
         goose       = p.goose;
         opencode    = p.opencode;
+        pi          = p.pi;
         rtk         = p.rtk;
       });
 
@@ -32,6 +34,7 @@
         codex       = p.codex;
         goose       = p.goose;
         opencode    = p.opencode;
+        pi          = p.pi;
         rtk         = p.rtk;
       });
 

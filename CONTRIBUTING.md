@@ -29,5 +29,5 @@ nix flake check --no-build
 Build and test all agents on the current platform:
 
 ```sh
-nix build .#claude-code .#codex .#opencode
+nix build .#claude-code .#codex .#goose .#opencode .#pi
 ```
