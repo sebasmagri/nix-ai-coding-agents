@@ -3,9 +3,9 @@
   stdenvNoCC,
   stdenv,
   fetchurl,
-  glibc,
+  autoPatchelfHook,
   unzip,
-  makeWrapper,
+  makeBinaryWrapper,
   ripgrep,
 }:
 
@@ -23,14 +23,6 @@ let
 
   platform = platformMap.${stdenvNoCC.hostPlatform.system};
   ext = if stdenvNoCC.hostPlatform.isDarwin then "zip" else "tar.gz";
-
-  isLinux = stdenvNoCC.hostPlatform.isLinux;
-
-  loaderMap = {
-    "x86_64-linux" = "${glibc}/lib/ld-linux-x86-64.so.2";
-    "aarch64-linux" = "${glibc}/lib/ld-linux-aarch64.so.1";
-  };
-  runtimeLibs = [ glibc stdenv.cc.cc.lib ];
 in
 stdenvNoCC.mkDerivation {
   pname = "opencode";
@@ -42,24 +34,24 @@ stdenvNoCC.mkDerivation {
   };
 
   dontUnpack = true;
-  dontPatchELF = true;
+  # Bun standalone binaries embed the JS payload after the ELF and locate it
+  # by offset from EOF. Stripping shifts file size and corrupts that offset.
   dontStrip = true;
 
-  nativeBuildInputs = [ makeWrapper ]
+  nativeBuildInputs = [
+    makeBinaryWrapper
+  ]
+    ++ lib.optionals stdenvNoCC.hostPlatform.isElf [ autoPatchelfHook ]
     ++ lib.optionals stdenvNoCC.hostPlatform.isDarwin [ unzip ];
+
+  buildInputs = lib.optionals stdenvNoCC.hostPlatform.isLinux [ stdenv.cc.cc.lib ];
 
   installPhase = ''
     ${if stdenvNoCC.hostPlatform.isDarwin then "unzip $src" else "tar xzf $src"}
-    install -Dm755 opencode $out/lib/opencode/opencode
-  '' + (if isLinux then ''
-    makeWrapper ${loaderMap.${stdenvNoCC.hostPlatform.system}} $out/bin/opencode \
-      --add-flags "--library-path ${lib.makeLibraryPath runtimeLibs}" \
-      --add-flags "$out/lib/opencode/opencode" \
-      --suffix PATH : ${lib.makeBinPath [ ripgrep ]}
-  '' else ''
-    makeWrapper $out/lib/opencode/opencode $out/bin/opencode \
-      --suffix PATH : ${lib.makeBinPath [ ripgrep ]}
-  '');
+    install -Dm755 opencode $out/bin/opencode
+    wrapProgram $out/bin/opencode \
+      --prefix PATH : ${lib.makeBinPath [ ripgrep ]}
+  '';
 
   meta = {
     description = "A powerful AI coding agent built for the terminal";

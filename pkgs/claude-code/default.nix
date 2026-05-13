@@ -3,8 +3,8 @@
   stdenvNoCC,
   stdenv,
   fetchurl,
-  glibc,
-  makeWrapper,
+  autoPatchelfHook,
+  makeBinaryWrapper,
   ripgrep,
 }:
 
@@ -22,18 +22,6 @@ let
 
   platform = platformMap.${stdenvNoCC.hostPlatform.system};
   baseUrl = "https://storage.googleapis.com/claude-code-dist-86c565f3-f756-42ad-8dfa-d59b1c096819/claude-code-releases";
-
-  isLinux = stdenvNoCC.hostPlatform.isLinux;
-
-  # Bun standalone binaries locate their embedded JS payload via offsets
-  # from the end of the file. patchelf shifts appended data by resizing
-  # ELF sections, breaking that offset. Instead, invoke the binary through
-  # the Nix-provided dynamic linker on Linux.
-  loaderMap = {
-    "x86_64-linux" = "${glibc}/lib/ld-linux-x86-64.so.2";
-    "aarch64-linux" = "${glibc}/lib/ld-linux-aarch64.so.1";
-  };
-  runtimeLibs = [ glibc stdenv.cc.cc.lib ];
 in
 stdenvNoCC.mkDerivation {
   pname = "claude-code";
@@ -45,26 +33,24 @@ stdenvNoCC.mkDerivation {
   };
 
   dontUnpack = true;
-  dontPatchELF = true;
+  # Bun standalone binaries embed the JS payload after the ELF and locate it
+  # by offset from EOF. Stripping shifts file size and corrupts that offset.
   dontStrip = true;
 
-  nativeBuildInputs = [ makeWrapper ];
+  nativeBuildInputs = [
+    makeBinaryWrapper
+  ] ++ lib.optionals stdenvNoCC.hostPlatform.isElf [ autoPatchelfHook ];
+
+  buildInputs = lib.optionals stdenvNoCC.hostPlatform.isLinux [ stdenv.cc.cc.lib ];
 
   installPhase = ''
-    install -Dm755 $src $out/lib/claude-code/claude
-  '' + (if isLinux then ''
-    makeWrapper ${loaderMap.${stdenvNoCC.hostPlatform.system}} $out/bin/claude \
-      --add-flags "--library-path ${lib.makeLibraryPath runtimeLibs}" \
-      --add-flags "$out/lib/claude-code/claude" \
+    install -Dm755 $src $out/bin/claude
+    wrapProgram $out/bin/claude \
       --set DISABLE_AUTOUPDATER 1 \
       --set DISABLE_INSTALLATION_CHECKS 1 \
-      --suffix PATH : ${lib.makeBinPath [ ripgrep ]}
-  '' else ''
-    makeWrapper $out/lib/claude-code/claude $out/bin/claude \
-      --set DISABLE_AUTOUPDATER 1 \
-      --set DISABLE_INSTALLATION_CHECKS 1 \
-      --suffix PATH : ${lib.makeBinPath [ ripgrep ]}
-  '');
+      --set USE_BUILTIN_RIPGREP 0 \
+      --prefix PATH : ${lib.makeBinPath [ ripgrep ]}
+  '';
 
   meta = {
     description = "An agentic coding tool that lives in your terminal";
