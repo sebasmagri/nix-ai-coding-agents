@@ -55,38 +55,38 @@
   },
   "opencode": {
     "x86_64-linux": {
-      "version": "1.15.5",
-      "hash": "sha256-v2912gibIgc7zyN1TMO+NR9xM2MWTlvc0+SVAcgRscU="
+      "version": "1.15.6",
+      "hash": "sha256-mHTQhX97AaCRieu4r0LvINVWvj8NBUVj5e7xI0Uoxx8="
     },
     "aarch64-linux": {
-      "version": "1.15.5",
-      "hash": "sha256-piROzOA/MDqJRfrjMPF5ZEafwHgPo1Vc3oD7l6xG8vs="
+      "version": "1.15.6",
+      "hash": "sha256-xEN7JxLtloN8sGtEiwTT0g9+8QBzWwatMZq3ntARGSs="
     },
     "aarch64-darwin": {
-      "version": "1.15.5",
-      "hash": "sha256-nPaKZ/b90KUhLaoPy8o9vAX/94jcbGIUqi8vSnyrqBU="
+      "version": "1.15.6",
+      "hash": "sha256-Hee3wdZ+mjCQIMX1vo12gY7xD18DcLRvgadbIza7ojA="
     },
     "x86_64-darwin": {
-      "version": "1.15.5",
-      "hash": "sha256-+oFoQH/LBu8Ta8mOihiqzwQhF/l8ieyUTg9v6TAmnsk="
+      "version": "1.15.6",
+      "hash": "sha256-+DUuwvOVkR5iW2IuoJ8wUY5bbh4kTg6nGjzzmp+Kfek="
     }
   },
   "pi": {
     "x86_64-linux": {
-      "version": "0.75.3",
-      "hash": "sha256-hu9I21upinhKzx284b1tX9W2vuPuLvRJ4IEagtG6eMM="
+      "version": "0.75.4",
+      "hash": "sha256-69nC5croJ3mi3p5/NMe+bkU+9LC2JjQNAtrLCfKfdjk="
     },
     "aarch64-linux": {
-      "version": "0.75.3",
-      "hash": "sha256-NBOJtZrUpUomgRTE4rTmXgFPl6WB/RTqciwgsziX7s0="
+      "version": "0.75.4",
+      "hash": "sha256-cl06ZU+eCCL8U3LifOgXsil4TDyW7q7AXenKqiv5/0s="
     },
     "aarch64-darwin": {
-      "version": "0.75.3",
-      "hash": "sha256-LRZmjWJoBepz1DCxeLIvU0EVLHwTVExG+J1oBY4Lv4E="
+      "version": "0.75.4",
+      "hash": "sha256-NlgJIGV++hkrXIpq06NNdTHHtUUJMaRZJz51uxV6oJ0="
     },
     "x86_64-darwin": {
-      "version": "0.75.3",
-      "hash": "sha256-JDLPC2qYTT+20Cm1/WUIYqQszpIbJb1bbRfOmvzD5po="
+      "version": "0.75.4",
+      "hash": "sha256-TQiqriFC/ZURKZIgZsywzOPbfTfDImjqUwq+cjrzbF4="
     }
   }
 }
