@@ -1,20 +1,20 @@
 {
   "claude-code": {
     "x86_64-linux": {
-      "version": "2.1.146",
-      "hash": "sha256-gl1TATgPH19GbFJo3iWgYpJ75liTj8HWMM+gLFIbgYU="
+      "version": "2.1.148",
+      "hash": "sha256-OziDahgBpjl/hDHGpisSfOR+Pp0QPBpwD8p/nIq1+Kw="
     },
     "aarch64-linux": {
-      "version": "2.1.146",
-      "hash": "sha256-ryUzTHomMqUxs04/TA1pdjuZcUnTHV8NdI5EgTdYgG8="
+      "version": "2.1.148",
+      "hash": "sha256-tTwpsf4AM3JjYEjBbVenTxyixX2EE91bFOLKd3EII+0="
     },
     "aarch64-darwin": {
-      "version": "2.1.146",
-      "hash": "sha256-sW9GaiIToEzs8a2VggFlUUikn0KVITTmrhgiV8z8CPM="
+      "version": "2.1.148",
+      "hash": "sha256-9KGGDT2bAWU93kGD4vEhbKngwaQE3WPKpO3wfJBBAqo="
     },
     "x86_64-darwin": {
-      "version": "2.1.146",
-      "hash": "sha256-a8FPReKOpsjDQiDIgye7cqOMX5eLmqRNDLNDdcv3iDc="
+      "version": "2.1.148",
+      "hash": "sha256-fFLYQZzCK4NVxjCdRULfMrPyRdGnwzKaMHlyRO88Rik="
     }
   },
   "codex": {
@@ -27,66 +27,66 @@
       "hash": "sha256-LQdlJ/11eGVvG4eQZQrck0SnQpmAs5mJQRVqtqBhVuY="
     },
     "aarch64-darwin": {
-      "version": "0.132.0",
-      "hash": "sha256-cyWOAcEilBwhu4r7uB2v8v/djT6AN1T9QRNAwkJX/c4="
+      "version": "0.133.0",
+      "hash": "sha256-E8eDYr7/gUt93hbtdWN2I2d3Zphp3eRL0jJnNQDfaFM="
     },
     "x86_64-darwin": {
-      "version": "0.132.0",
-      "hash": "sha256-WKytmvTzttur9qElW66sI4QxCyCNixSoiZdyzHL5nqE="
+      "version": "0.133.0",
+      "hash": "sha256-K5G9VPBSDcmUtcMidpKA+U8cIn/bNd1V+STqyOIke5E="
     }
   },
   "goose": {
     "x86_64-linux": {
-      "version": "1.34.1",
-      "hash": "sha256-W+FLtXDlEVSWoJV01yJfC/RgZkCBEJ92WsXNNVecBq8="
+      "version": "1.35.0",
+      "hash": "sha256-7OOLllQdRu9XBoOyGX3WVqXNlv309NiMDS+USx3m+rI="
     },
     "aarch64-linux": {
-      "version": "1.34.1",
-      "hash": "sha256-OuP9MzTKsLUNzWA2Fl7ly5bjWFLpxflG1CYR5jUkbWc="
+      "version": "1.35.0",
+      "hash": "sha256-i9C0oBka58MChsH2ayCd+bv0e12DzHSddWnaaspY/Nw="
     },
     "aarch64-darwin": {
-      "version": "1.34.1",
-      "hash": "sha256-mx13Iff5KjdP9ETBsJ3xohqATRGJtueu2VdV2/ydyKw="
+      "version": "1.35.0",
+      "hash": "sha256-CELxemX3XNSiDCBUYI8nM22E+KsDIPSSm/i9NtxbYbk="
     },
     "x86_64-darwin": {
-      "version": "1.34.1",
-      "hash": "sha256-6VF7gcuYOeDCS8TAUn8gNo7Gq02/1bHXsxxx/3DQ+2o="
+      "version": "1.35.0",
+      "hash": "sha256-xyO9+P8ZkSvjzTjun/X6OdyjYe42bnErRcwIBXn7nmI="
     }
   },
   "opencode": {
     "x86_64-linux": {
-      "version": "1.15.6",
-      "hash": "sha256-mHTQhX97AaCRieu4r0LvINVWvj8NBUVj5e7xI0Uoxx8="
+      "version": "1.15.7",
+      "hash": "sha256-b3+V8TkXuaq4Qh27fhIavy/s/s3M0W/VtJf1IvRU+Sg="
     },
     "aarch64-linux": {
-      "version": "1.15.6",
-      "hash": "sha256-xEN7JxLtloN8sGtEiwTT0g9+8QBzWwatMZq3ntARGSs="
+      "version": "1.15.7",
+      "hash": "sha256-0spA8RsOsWSMv/r5hQwSKoMGKyGtoY5dspVYxr+v7g8="
     },
     "aarch64-darwin": {
-      "version": "1.15.6",
-      "hash": "sha256-Hee3wdZ+mjCQIMX1vo12gY7xD18DcLRvgadbIza7ojA="
+      "version": "1.15.7",
+      "hash": "sha256-M1MH7ofT2shJhr+PC9QnOkPDX8ubEkVWwvT61KUQ46Q="
     },
     "x86_64-darwin": {
-      "version": "1.15.6",
-      "hash": "sha256-+DUuwvOVkR5iW2IuoJ8wUY5bbh4kTg6nGjzzmp+Kfek="
+      "version": "1.15.7",
+      "hash": "sha256-EuSlYrzW5pHrhGzu3Fwfe62I8EffN3W+Iar5eb2pWdc="
     }
   },
   "pi": {
     "x86_64-linux": {
-      "version": "0.75.4",
-      "hash": "sha256-69nC5croJ3mi3p5/NMe+bkU+9LC2JjQNAtrLCfKfdjk="
+      "version": "0.74.2",
+      "hash": "sha256-cnz6hNpO8MXoindN725DZK2RSn/y/pjRCt6yJwo9U3U="
     },
     "aarch64-linux": {
-      "version": "0.75.4",
-      "hash": "sha256-cl06ZU+eCCL8U3LifOgXsil4TDyW7q7AXenKqiv5/0s="
+      "version": "0.74.2",
+      "hash": "sha256-nAR897Mg2ZfrYg5OTIGG/4InaioHq9csy+FjrBN9j2E="
     },
     "aarch64-darwin": {
-      "version": "0.75.4",
-      "hash": "sha256-NlgJIGV++hkrXIpq06NNdTHHtUUJMaRZJz51uxV6oJ0="
+      "version": "0.74.2",
+      "hash": "sha256-KhQ5s1NAI6cwN2FfVRboTlsgB7Si6gYufI834Xd7asc="
     },
     "x86_64-darwin": {
-      "version": "0.75.4",
-      "hash": "sha256-TQiqriFC/ZURKZIgZsywzOPbfTfDImjqUwq+cjrzbF4="
+      "version": "0.74.2",
+      "hash": "sha256-ipMH9Ta3kg/5SXVIlAE3a8pmLEz88JVyxeF7N0W9TN0="
     }
   }
 }
