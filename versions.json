@@ -73,20 +73,20 @@
   },
   "pi": {
     "x86_64-linux": {
-      "version": "0.74.2",
-      "hash": "sha256-cnz6hNpO8MXoindN725DZK2RSn/y/pjRCt6yJwo9U3U="
+      "version": "0.75.5",
+      "hash": "sha256-rGh6zXJwXavpZ/1A02Uxf2gFSHi+HLLArpoFkv0Qi10="
     },
     "aarch64-linux": {
-      "version": "0.74.2",
-      "hash": "sha256-nAR897Mg2ZfrYg5OTIGG/4InaioHq9csy+FjrBN9j2E="
+      "version": "0.75.5",
+      "hash": "sha256-i1xm/Duu5f6kB39iMH95LWKTZgMVs85NCUDEk1O0X1A="
     },
     "aarch64-darwin": {
-      "version": "0.74.2",
-      "hash": "sha256-KhQ5s1NAI6cwN2FfVRboTlsgB7Si6gYufI834Xd7asc="
+      "version": "0.75.5",
+      "hash": "sha256-648DnEHoexQxyCuql/gHxNORt31m7LQeCWJwrjb5Ni0="
     },
     "x86_64-darwin": {
-      "version": "0.74.2",
-      "hash": "sha256-ipMH9Ta3kg/5SXVIlAE3a8pmLEz88JVyxeF7N0W9TN0="
+      "version": "0.75.5",
+      "hash": "sha256-JVbFFmtJW4OArlC1ntYc8ubE19IxwN8O0hTZ3kn0faw="
     }
   }
 }
