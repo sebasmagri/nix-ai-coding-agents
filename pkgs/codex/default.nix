@@ -1,28 +1,24 @@
 {
   lib,
-  stdenv,
+  stdenvNoCC,
   fetchurl,
-  autoPatchelfHook,
-  libcap,
-  openssl,
-  zlib,
 }:
 
 let
   versions = builtins.fromJSON (builtins.readFile ../../versions.json);
-  info = versions.codex.${stdenv.hostPlatform.system}
-    or (throw "codex: unsupported platform ${stdenv.hostPlatform.system}");
+  info = versions.codex.${stdenvNoCC.hostPlatform.system}
+    or (throw "codex: unsupported platform ${stdenvNoCC.hostPlatform.system}");
 
   platformMap = {
-    "x86_64-linux" = "x86_64-unknown-linux-gnu";
-    "aarch64-linux" = "aarch64-unknown-linux-gnu";
+    "x86_64-linux" = "x86_64-unknown-linux-musl";
+    "aarch64-linux" = "aarch64-unknown-linux-musl";
     "aarch64-darwin" = "aarch64-apple-darwin";
     "x86_64-darwin" = "x86_64-apple-darwin";
   };
 
-  triple = platformMap.${stdenv.hostPlatform.system};
+  triple = platformMap.${stdenvNoCC.hostPlatform.system};
 in
-stdenv.mkDerivation {
+stdenvNoCC.mkDerivation {
   pname = "codex";
   inherit (info) version;
 
@@ -32,9 +28,6 @@ stdenv.mkDerivation {
   };
 
   dontUnpack = true;
-
-  nativeBuildInputs = lib.optionals stdenv.hostPlatform.isLinux [ autoPatchelfHook ];
-  buildInputs = lib.optionals stdenv.hostPlatform.isLinux [ libcap openssl zlib stdenv.cc.cc.lib ];
 
   installPhase = ''
     tar xzf $src
