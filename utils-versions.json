@@ -16,5 +16,19 @@
       "version": "0.42.0",
       "hash": "sha256-OxufE1SFma6dkg9eMWnMQC2xkwBE6iTgvk4ja38HKpk="
     }
+  },
+  "tokensave": {
+    "x86_64-linux": {
+      "version": "6.1.1",
+      "hash": "sha256-MLvy8Nj++2boot5XlEQJ5UpiI0kDUVss1v58UoK2JJs="
+    },
+    "aarch64-linux": {
+      "version": "6.1.1",
+      "hash": "sha256-XxkUKfCV+L4eRgXnqTe8Xo74cCJZ4+u3TN2KXYxDo04="
+    },
+    "aarch64-darwin": {
+      "version": "6.1.1",
+      "hash": "sha256-hOrGanp/aS6/kt2FzuJ255SnZZTG6ndsvwRgEs/U66k="
+    }
   }
 }
