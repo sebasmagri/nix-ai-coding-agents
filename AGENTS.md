@@ -34,6 +34,12 @@ This is a Nix flake that packages AI coding agents and related utilities from pr
 
 `x86_64-linux`, `aarch64-linux`, `aarch64-darwin`, `x86_64-darwin`.
 
+Some packages cover fewer platforms when upstream does not publish a
+prebuilt for one of the four. The set of platforms is always the keys
+of `versions.<name>` or `utils-versions.<name>`; `packages.<system>`
+and `checks.<system>` omit the attribute on platforms not in that set.
+Current gaps: `tokensave` has no `x86_64-darwin` prebuilt.
+
 ## Adding a new agent
 
 1. Create `pkgs/<agent>/default.nix` following the existing pattern (read
@@ -58,6 +64,6 @@ Same steps as adding an agent, but:
 
 ```sh
 nix flake check --no-build   # evaluation check (all platforms)
-nix build .#claude-code .#codex .#goose .#opencode .#pi .#rtk  # build on current host
+nix build .#claude-code .#codex .#goose .#opencode .#pi .#rtk .#tokensave  # build on current host
 bash scripts/update-agents.sh --dry-run     # verify version resolution
 ```

@@ -18,6 +18,7 @@
         opencode    = final.callPackage ./pkgs/opencode {};
         pi          = final.callPackage ./pkgs/pi {};
         rtk         = final.callPackage ./pkgs/utils/rtk {};
+        tokensave   = final.callPackage ./pkgs/utils/tokensave {};
       };
 
       packages = forEachSystem (system: let p = pkgsFor system; in {
@@ -27,6 +28,8 @@
         opencode    = p.opencode;
         pi          = p.pi;
         rtk         = p.rtk;
+      } // nixpkgs.lib.optionalAttrs (system != "x86_64-darwin") {
+        tokensave = p.tokensave;
       });
 
       checks = forEachSystem (system: let p = pkgsFor system; in {
@@ -36,10 +39,13 @@
         opencode    = p.opencode;
         pi          = p.pi;
         rtk         = p.rtk;
+      } // nixpkgs.lib.optionalAttrs (system != "x86_64-darwin") {
+        tokensave = p.tokensave;
       });
 
       homeManagerModules = {
         rtk = import ./modules/programs/rtk.nix;
+        tokensave = import ./modules/programs/tokensave.nix;
       };
 
       devShells = forEachSystem (system: let p = pkgsFor system; in {
