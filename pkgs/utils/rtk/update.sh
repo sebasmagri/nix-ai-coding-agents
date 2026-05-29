@@ -14,13 +14,16 @@ if [[ -z "$latest" ]]; then
 else
   for system in "${!RTK_TRIPLES[@]}"; do
     current=$(current_version rtk "$system" "$UTILS_VERSIONS_JSON")
+    triple="${RTK_TRIPLES[$system]}"
     if [[ "$current" == "$latest" ]]; then
       echo "✓ rtk ($system): $current is up to date"
+      check_drift rtk "$system" \
+        "$(recorded_hash rtk "$system" "$UTILS_VERSIONS_JSON")" \
+        "$(github_asset_digest_sri rtk-ai/rtk "v$latest" "rtk-${triple}.tar.gz")"
       continue
     fi
     echo "↑ rtk ($system): $current → $latest"
     if [[ "$DRY_RUN" != "--dry-run" ]]; then
-      triple="${RTK_TRIPLES[$system]}"
       echo "  fetching hash..."
       if hash=$(sri_hash_file "https://github.com/rtk-ai/rtk/releases/download/v$latest/rtk-${triple}.tar.gz"); then
         update_platform rtk "$system" "$latest" "$hash" "$UTILS_VERSIONS_JSON"

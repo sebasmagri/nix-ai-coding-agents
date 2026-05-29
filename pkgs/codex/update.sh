@@ -16,13 +16,16 @@ if [[ -z "$latest" ]]; then
 else
   for system in "${!CODEX_TRIPLES[@]}"; do
     current=$(current_version codex "$system" "$VERSIONS_JSON")
+    triple="${CODEX_TRIPLES[$system]}"
     if [[ "$current" == "$latest" ]]; then
       echo "✓ codex ($system): $current is up to date"
+      check_drift codex "$system" \
+        "$(recorded_hash codex "$system" "$VERSIONS_JSON")" \
+        "$(github_asset_digest_sri openai/codex "rust-v$latest" "codex-${triple}.tar.gz")"
       continue
     fi
     echo "↑ codex ($system): $current → $latest"
     if [[ "$DRY_RUN" != "--dry-run" ]]; then
-      triple="${CODEX_TRIPLES[$system]}"
       echo "  fetching hash..."
       if hash=$(sri_hash_file "https://github.com/openai/codex/releases/download/rust-v$latest/codex-${triple}.tar.gz"); then
         update_platform codex "$system" "$latest" "$hash" "$VERSIONS_JSON"

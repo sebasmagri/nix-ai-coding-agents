@@ -16,13 +16,16 @@ if [[ -z "$latest" ]]; then
 else
   for system in "${!GOOSE_TRIPLES[@]}"; do
     current=$(current_version goose "$system" "$VERSIONS_JSON")
+    triple="${GOOSE_TRIPLES[$system]}"
     if [[ "$current" == "$latest" ]]; then
       echo "✓ goose ($system): $current is up to date"
+      check_drift goose "$system" \
+        "$(recorded_hash goose "$system" "$VERSIONS_JSON")" \
+        "$(github_asset_digest_sri block/goose "v$latest" "goose-${triple}.tar.bz2")"
       continue
     fi
     echo "↑ goose ($system): $current → $latest"
     if [[ "$DRY_RUN" != "--dry-run" ]]; then
-      triple="${GOOSE_TRIPLES[$system]}"
       echo "  fetching hash..."
       if hash=$(sri_hash_file "https://github.com/block/goose/releases/download/v$latest/goose-${triple}.tar.bz2"); then
         update_platform goose "$system" "$latest" "$hash" "$VERSIONS_JSON"

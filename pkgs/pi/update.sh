@@ -16,13 +16,16 @@ if [[ -z "$latest" ]]; then
 else
   for system in "${!PI_ASSETS[@]}"; do
     current=$(current_version pi "$system" "$VERSIONS_JSON")
+    asset="${PI_ASSETS[$system]}"
     if [[ "$current" == "$latest" ]]; then
       echo "✓ pi ($system): $current is up to date"
+      check_drift pi "$system" \
+        "$(recorded_hash pi "$system" "$VERSIONS_JSON")" \
+        "$(github_asset_digest_sri badlogic/pi-mono "v$latest" "$asset")"
       continue
     fi
     echo "↑ pi ($system): $current → $latest"
     if [[ "$DRY_RUN" != "--dry-run" ]]; then
-      asset="${PI_ASSETS[$system]}"
       echo "  fetching hash..."
       if hash=$(sri_hash_file "https://github.com/badlogic/pi-mono/releases/download/v$latest/$asset"); then
         update_platform pi "$system" "$latest" "$hash" "$VERSIONS_JSON"

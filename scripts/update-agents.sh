@@ -24,6 +24,7 @@ VERSIONS_JSON="$REPO_DIR/versions.json"
 UTILS_VERSIONS_JSON="$REPO_DIR/utils-versions.json"
 DRY_RUN="${1:-}"
 UPDATES=""
+DRIFT=""
 
 # shellcheck source=lib.sh
 source "$SCRIPT_DIR/lib.sh"
@@ -40,4 +41,12 @@ elif [[ -n "$UPDATES" ]]; then
   echo -e "\nUpdated:\n$UPDATES"
 else
   echo -e "\nAll packages are up to date."
+fi
+
+if [[ -n "$DRIFT" ]]; then
+  echo -e "\n‼ ARTIFACT DRIFT — recorded hashes no longer match upstream bytes."
+  echo    "  These versions were re-uploaded under a stable tag. The pins were"
+  echo    "  left untouched. Verify each is a legitimate rebuild before re-pinning:"
+  echo -e "$DRIFT"
+  exit 1
 fi

@@ -16,13 +16,16 @@ if [[ -z "$latest" ]]; then
 else
   for system in "${!OPENCODE_ASSETS[@]}"; do
     current=$(current_version opencode "$system" "$VERSIONS_JSON")
+    asset="${OPENCODE_ASSETS[$system]}"
     if [[ "$current" == "$latest" ]]; then
       echo "✓ opencode ($system): $current is up to date"
+      check_drift opencode "$system" \
+        "$(recorded_hash opencode "$system" "$VERSIONS_JSON")" \
+        "$(github_asset_digest_sri anomalyco/opencode "v$latest" "$asset")"
       continue
     fi
     echo "↑ opencode ($system): $current → $latest"
     if [[ "$DRY_RUN" != "--dry-run" ]]; then
-      asset="${OPENCODE_ASSETS[$system]}"
       echo "  fetching hash..."
       if hash=$(sri_hash_file "https://github.com/anomalyco/opencode/releases/download/v$latest/$asset"); then
         update_platform opencode "$system" "$latest" "$hash" "$VERSIONS_JSON"
