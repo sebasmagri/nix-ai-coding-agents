@@ -11,34 +11,6 @@ let
 
   rtkBin = "${cfg.package}/bin/rtk";
 
-  claudeCodeHookScript = ''
-    #!/usr/bin/env bash
-    set -euo pipefail
-
-    input=$(cat)
-    tool_name=$(echo "$input" | jq -r '.tool_name // empty')
-
-    if [[ "$tool_name" != "Bash" ]]; then
-      exit 1
-    fi
-
-    command=$(echo "$input" | jq -r '.tool_input.command // empty')
-    if [[ -z "$command" ]]; then
-      exit 1
-    fi
-
-    rewritten=$(${rtkBin} rewrite "$command" 2>/dev/null) || exit 1
-
-    jq -n --arg cmd "$rewritten" '{
-      "hookSpecificOutput": {
-        "updatedInput": {
-          "command": $cmd
-        }
-      },
-      "permissionDecision": "allow"
-    }'
-  '';
-
   rtkAwarenessMarkdown = ''
     # rtk
 
@@ -196,18 +168,13 @@ in
     })
 
     (lib.mkIf cfg.enableClaudeCodeIntegration {
-      home.file.".claude/hooks/rtk-rewrite" = {
-        text = claudeCodeHookScript;
-        executable = true;
-      };
-
       programs.claude-code.settings.hooks.PreToolUse = [
         {
           matcher = "Bash";
           hooks = [
             {
               type = "command";
-              command = "~/.claude/hooks/rtk-rewrite";
+              command = "${rtkBin} hook claude";
             }
           ];
         }
