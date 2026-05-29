@@ -88,12 +88,7 @@ let
     })
   '';
 
-  codexSkillMarkdown = ''
-    ---
-    name: rtk
-    description: Token-saving CLI proxy. Use when executing shell commands to get concise, LLM-optimized output.
-    ---
-
+  codexInstructions = ''
     # rtk
 
     rtk is a CLI proxy that reduces token consumption by filtering and
@@ -215,15 +210,15 @@ in
         }
       ];
 
-      programs.claude-code.rules."rtk" = rtkAwarenessMarkdown;
+      programs.claude-code.memory.text = rtkAwarenessMarkdown;
     })
 
     (lib.mkIf cfg.enableCodexIntegration {
-      programs.codex.skills."rtk" = codexSkillMarkdown;
+      programs.codex.custom-instructions = codexInstructions;
     })
 
     (lib.mkIf cfg.enableOpenCodeIntegration {
-      programs.opencode.tools."rtk" = openCodePluginScript;
+      xdg.configFile."opencode/plugins/rtk.ts".text = openCodePluginScript;
     })
   ]);
 }
