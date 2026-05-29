@@ -8,7 +8,6 @@ let
   cfg = config.programs.tokensave;
 
   tomlFormat = pkgs.formats.toml { };
-  jsonFormat = pkgs.formats.json { };
   yamlFormat = pkgs.formats.yaml { };
 
   tokensaveBin = "${cfg.package}/bin/tokensave";
@@ -62,13 +61,6 @@ let
     `nodes`, `edges`, `files`).
   '';
 
-  codexSkillMarkdown = ''
-    ---
-    name: tokensave
-    description: Semantic code-graph MCP. Use the tokensave_* tools for code research instead of grep, glob, or file reads.
-    ---
-
-  '' + awarenessMarkdown;
 in
 {
   options.programs.tokensave = {
@@ -136,10 +128,6 @@ in
           assertion = cfg.enableOpenCodeIntegration -> config.programs.opencode.enable;
           message = "programs.tokensave.enableOpenCodeIntegration requires programs.opencode.enable = true";
         }
-        {
-          assertion = cfg.enableGooseIntegration -> config.programs.goose.enable;
-          message = "programs.tokensave.enableGooseIntegration requires programs.goose.enable = true";
-        }
       ];
 
       home.packages = lib.mkIf (cfg.package != null) [ cfg.package ];
@@ -183,25 +171,21 @@ in
 
       programs.claude-code.settings.permissions.allow = claudeAllowedTools;
 
-      programs.claude-code.rules."tokensave" = awarenessMarkdown;
+      programs.claude-code.memory.text = awarenessMarkdown;
     })
 
     (lib.mkIf cfg.enableCodexIntegration {
-      home.file.".codex/config.toml".source = tomlFormat.generate "codex-tokensave" {
-        mcp_servers.tokensave = mcpServerSpec // {
-          tools = codexToolApprovals;
-        };
+      programs.codex.settings.mcp_servers.tokensave = mcpServerSpec // {
+        tools = codexToolApprovals;
       };
 
-      programs.codex.skills."tokensave" = codexSkillMarkdown;
+      programs.codex.custom-instructions = awarenessMarkdown;
     })
 
     (lib.mkIf cfg.enableOpenCodeIntegration {
-      xdg.configFile."opencode/opencode.json".source = jsonFormat.generate "opencode-tokensave" {
-        mcp.tokensave = {
-          type = "local";
-          command = [ tokensaveBin "serve" ];
-        };
+      programs.opencode.settings.mcp.tokensave = {
+        type = "local";
+        command = [ tokensaveBin "serve" ];
       };
     })
 
