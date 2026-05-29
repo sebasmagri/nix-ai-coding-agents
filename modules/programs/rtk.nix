@@ -196,7 +196,10 @@ in
     })
 
     (lib.mkIf cfg.enableClaudeCodeIntegration {
-      programs.claude-code.hooks."rtk-rewrite" = claudeCodeHookScript;
+      home.file.".claude/hooks/rtk-rewrite" = {
+        text = claudeCodeHookScript;
+        executable = true;
+      };
 
       programs.claude-code.settings.hooks.PreToolUse = [
         {
