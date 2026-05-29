@@ -17,6 +17,7 @@ else
     current=$(current_version claude-code "$system" "$VERSIONS_JSON")
     if [[ "$current" == "$latest" ]]; then
       echo "✓ claude-code ($system): $current is up to date"
+      echo "    drift check skipped ($system): binary hosted on GCS, no comparable sha256 digest"
       continue
     fi
     echo "↑ claude-code ($system): $current → $latest"
