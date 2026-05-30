@@ -139,7 +139,7 @@ in
     })
 
     (lib.mkIf cfg.enableClaudeCodeIntegration {
-      programs.claude-code.settings.mcpServers.tokensave = mcpServerSpec;
+      programs.claude-code.mcpServers.tokensave = mcpServerSpec;
 
       programs.claude-code.settings.hooks.PreToolUse = [
         {
