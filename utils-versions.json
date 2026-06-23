@@ -19,16 +19,16 @@
   },
   "tokensave": {
     "x86_64-linux": {
-      "version": "6.4.4",
-      "hash": "sha256-YlsoKG2cAUZCy7ttNWfW2ab6BNoCv60AypszHRMaa7Y="
+      "version": "7.0.0",
+      "hash": "sha256-PyYimELuACjXsCKPh0rgwydsfkDru7c5oUAuYPohNuM="
     },
     "aarch64-linux": {
-      "version": "6.4.4",
-      "hash": "sha256-QSEUp8tZR6kACMn1DKTvJsxHVGk1gAY0Wf9Ncd+l8B0="
+      "version": "7.0.0",
+      "hash": "sha256-WxVOLi82ui4xYH8cA3rQYlUrVtS9PmKFhHgVj2FqpT8="
     },
     "aarch64-darwin": {
-      "version": "6.4.4",
-      "hash": "sha256-B4SV2S6TOIcGoPYeLJ4CQuN07+9qRLOVVoiWc/QQYuA="
+      "version": "7.0.0",
+      "hash": "sha256-HRc30W1USfEScmg4MRX8v+bWPZO1AnW+mfFYR5o804o="
     }
   }
 }
