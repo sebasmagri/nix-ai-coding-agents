@@ -19,20 +19,20 @@
   },
   "codex": {
     "x86_64-linux": {
-      "version": "0.142.0",
-      "hash": "sha256-LjrLOaJ3/xHDFNgyz90kb66+6ia/Aa/46eEGQebeqAE="
+      "version": "0.142.1",
+      "hash": "sha256-IMYWrPw/sNIfUHrBT7SdqUJpFKBOsK+Ff4/X6/FvTog="
     },
     "aarch64-linux": {
-      "version": "0.142.0",
-      "hash": "sha256-Y/yYFvF0q09xMDHmOCAcSc+nzF9BoiudtxAQr6fgmJI="
+      "version": "0.142.1",
+      "hash": "sha256-AlSSgklyhGF4pwr0RllLNxKi5vn4q7rm2tZo/Qbe+tw="
     },
     "aarch64-darwin": {
-      "version": "0.142.0",
-      "hash": "sha256-2qREPEVfSBQ9dQkS+g+R17lFb6UpcvclvBJUrptaNkg="
+      "version": "0.142.1",
+      "hash": "sha256-dGMmpwsYWDfCZg5QHDukVDv25SUP1PGlZ/vDhUtRi+0="
     },
     "x86_64-darwin": {
-      "version": "0.142.0",
-      "hash": "sha256-IBQaWLHgd7I/A4fpmvw9digOzWyS72gzQ0Sgo3nSkzY="
+      "version": "0.142.1",
+      "hash": "sha256-S8aULzXXgFbfkjIqS/yLcOvwwc+tVjTw6Pt3IdnxQTE="
     }
   },
   "goose": {
