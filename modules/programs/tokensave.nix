@@ -12,32 +12,6 @@ let
 
   tokensaveBin = "${cfg.package}/bin/tokensave";
 
-  tokensaveTools = [
-    "affected" "body" "branch_diff" "branch_list" "branch_search"
-    "by_qualified_name" "call_chain" "callees" "callers" "callers_for"
-    "changelog" "circular" "commit_context" "complexity" "config"
-    "constructors" "context" "coupling" "dead_code" "dependency_depth"
-    "derives" "diagnose" "diagnostics" "diff_context" "distribution"
-    "doc_coverage" "dsm" "field_sites" "file_dependents" "files"
-    "find_exact_symbol" "gini" "god_class" "health" "hotspots"
-    "impact" "implementations" "impls" "inheritance_depth" "insert_at"
-    "insert_at_symbol" "largest" "module_api" "multi_str_replace" "node"
-    "outline" "port_order" "port_status" "pr_context" "rank"
-    "read" "record_code_area" "record_decision" "recursion" "redundancy"
-    "rename_preview" "replace_symbol" "run_affected_tests" "runtime" "search"
-    "session_end" "session_recall" "session_start" "signature" "signature_search"
-    "similar" "simplify_scan" "status" "str_replace" "test_map"
-    "test_risk" "todos" "type_hierarchy" "unsafe_patterns" "unused_imports"
-  ];
-
-  claudeAllowedTools =
-    map (t: "mcp__tokensave__tokensave_${t}") tokensaveTools;
-
-  codexToolApprovals = lib.listToAttrs (map (t: {
-    name = "tokensave_${t}";
-    value = { approval_mode = "auto"; };
-  }) tokensaveTools);
-
   mcpServerSpec = {
     command = tokensaveBin;
     args = [ "serve" ];
@@ -169,14 +143,14 @@ in
         }
       ];
 
-      programs.claude-code.settings.permissions.allow = claudeAllowedTools;
+      programs.claude-code.settings.permissions.allow = [ "mcp__tokensave__*" ];
 
       programs.claude-code.memory.text = awarenessMarkdown;
     })
 
     (lib.mkIf cfg.enableCodexIntegration {
       programs.codex.settings.mcp_servers.tokensave = mcpServerSpec // {
-        tools = codexToolApprovals;
+        default_tools_approval_mode = "auto";
       };
 
       programs.codex.custom-instructions = awarenessMarkdown;
