@@ -1,11 +1,19 @@
 {
   config,
+  options,
   lib,
   pkgs,
   ...
 }:
 let
   cfg = config.programs.rtk;
+
+  # home-manager 26.05 renamed these; set whichever the consumer's
+  # home-manager provides. optionalAttrs (not mkIf) keeps the attribute
+  # undefined when the option is absent, which the module system's
+  # unmatched-option check requires.
+  hasCodexContext = options.programs.codex ? context;
+  hasClaudeCodeContext = options.programs.claude-code ? context;
 
   tomlFormat = pkgs.formats.toml { };
 
@@ -167,25 +175,39 @@ in
         tomlFormat.generate "rtk-config" cfg.settings;
     })
 
-    (lib.mkIf cfg.enableClaudeCodeIntegration {
-      programs.claude-code.settings.hooks.PreToolUse = [
-        {
-          matcher = "Bash";
-          hooks = [
-            {
-              type = "command";
-              command = "${rtkBin} hook claude";
-            }
-          ];
-        }
-      ];
+    (lib.mkIf cfg.enableClaudeCodeIntegration (lib.mkMerge [
+      {
+        programs.claude-code.settings.hooks.PreToolUse = [
+          {
+            matcher = "Bash";
+            hooks = [
+              {
+                type = "command";
+                command = "${rtkBin} hook claude";
+              }
+            ];
+          }
+        ];
+      }
 
-      programs.claude-code.memory.text = rtkAwarenessMarkdown;
-    })
+      (lib.optionalAttrs hasClaudeCodeContext {
+        programs.claude-code.context = rtkAwarenessMarkdown;
+      })
 
-    (lib.mkIf cfg.enableCodexIntegration {
-      programs.codex.custom-instructions = codexInstructions;
-    })
+      (lib.optionalAttrs (!hasClaudeCodeContext) {
+        programs.claude-code.memory.text = rtkAwarenessMarkdown;
+      })
+    ]))
+
+    (lib.mkIf cfg.enableCodexIntegration (lib.mkMerge [
+      (lib.optionalAttrs hasCodexContext {
+        programs.codex.context = codexInstructions;
+      })
+
+      (lib.optionalAttrs (!hasCodexContext) {
+        programs.codex.custom-instructions = codexInstructions;
+      })
+    ]))
 
     (lib.mkIf cfg.enableOpenCodeIntegration {
       xdg.configFile."opencode/plugins/rtk.ts".text = openCodePluginScript;
