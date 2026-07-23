@@ -1,11 +1,19 @@
 {
   config,
+  options,
   lib,
   pkgs,
   ...
 }:
 let
   cfg = config.programs.tokensave;
+
+  # home-manager 26.05 renamed these; set whichever the consumer's
+  # home-manager provides. optionalAttrs (not mkIf) keeps the attribute
+  # undefined when the option is absent, which the module system's
+  # unmatched-option check requires.
+  hasCodexContext = options.programs.codex ? context;
+  hasClaudeCodeContext = options.programs.claude-code ? context;
 
   tomlFormat = pkgs.formats.toml { };
   yamlFormat = pkgs.formats.yaml { };
@@ -112,49 +120,65 @@ in
         tomlFormat.generate "tokensave-config" cfg.settings;
     })
 
-    (lib.mkIf cfg.enableClaudeCodeIntegration {
-      programs.claude-code.mcpServers.tokensave = mcpServerSpec;
+    (lib.mkIf cfg.enableClaudeCodeIntegration (lib.mkMerge [
+      {
+        programs.claude-code.mcpServers.tokensave = mcpServerSpec;
 
-      programs.claude-code.settings.hooks.PreToolUse = [
-        {
-          matcher = "Agent";
-          hooks = [{
-            type = "command";
-            command = "${tokensaveBin} hook-pre-tool-use";
-          }];
-        }
-      ];
+        programs.claude-code.settings.hooks.PreToolUse = [
+          {
+            matcher = "Agent";
+            hooks = [{
+              type = "command";
+              command = "${tokensaveBin} hook-pre-tool-use";
+            }];
+          }
+        ];
 
-      programs.claude-code.settings.hooks.UserPromptSubmit = [
-        {
-          hooks = [{
-            type = "command";
-            command = "${tokensaveBin} hook-prompt-submit";
-          }];
-        }
-      ];
+        programs.claude-code.settings.hooks.UserPromptSubmit = [
+          {
+            hooks = [{
+              type = "command";
+              command = "${tokensaveBin} hook-prompt-submit";
+            }];
+          }
+        ];
 
-      programs.claude-code.settings.hooks.Stop = [
-        {
-          hooks = [{
-            type = "command";
-            command = "${tokensaveBin} hook-stop";
-          }];
-        }
-      ];
+        programs.claude-code.settings.hooks.Stop = [
+          {
+            hooks = [{
+              type = "command";
+              command = "${tokensaveBin} hook-stop";
+            }];
+          }
+        ];
 
-      programs.claude-code.settings.permissions.allow = [ "mcp__tokensave__*" ];
+        programs.claude-code.settings.permissions.allow = [ "mcp__tokensave__*" ];
+      }
 
-      programs.claude-code.memory.text = awarenessMarkdown;
-    })
+      (lib.optionalAttrs hasClaudeCodeContext {
+        programs.claude-code.context = awarenessMarkdown;
+      })
 
-    (lib.mkIf cfg.enableCodexIntegration {
-      programs.codex.settings.mcp_servers.tokensave = mcpServerSpec // {
-        default_tools_approval_mode = "auto";
-      };
+      (lib.optionalAttrs (!hasClaudeCodeContext) {
+        programs.claude-code.memory.text = awarenessMarkdown;
+      })
+    ]))
 
-      programs.codex.custom-instructions = awarenessMarkdown;
-    })
+    (lib.mkIf cfg.enableCodexIntegration (lib.mkMerge [
+      {
+        programs.codex.settings.mcp_servers.tokensave = mcpServerSpec // {
+          default_tools_approval_mode = "auto";
+        };
+      }
+
+      (lib.optionalAttrs hasCodexContext {
+        programs.codex.context = awarenessMarkdown;
+      })
+
+      (lib.optionalAttrs (!hasCodexContext) {
+        programs.codex.custom-instructions = awarenessMarkdown;
+      })
+    ]))
 
     (lib.mkIf cfg.enableOpenCodeIntegration {
       programs.opencode.settings.mcp.tokensave = {
