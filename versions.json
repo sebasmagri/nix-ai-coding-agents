@@ -37,20 +37,20 @@
   },
   "goose": {
     "x86_64-linux": {
-      "version": "1.43.0",
-      "hash": "sha256-shiwjAqGyfNWYj9Ru5H8FMTeZme8nBXW2SJ3i+sg8b8="
+      "version": "1.44.0",
+      "hash": "sha256-h4g6tS43SOSc97HtCGdzN2UcNdb2jx75906MWLyuzXM="
     },
     "aarch64-linux": {
-      "version": "1.43.0",
-      "hash": "sha256-XS6Tt8dAQJzgl4LZi3Dbh+rC4fz/Unvbr0SpjaiztZc="
+      "version": "1.44.0",
+      "hash": "sha256-qw1NROS0JRtk0Nl4SII4MTeJO9b2j0VZOtbBhqK9wqk="
     },
     "aarch64-darwin": {
-      "version": "1.43.0",
-      "hash": "sha256-wk/92KOGMohZKrIRdY1B8Kd5Qo936S/Kpz6YgomaTuw="
+      "version": "1.44.0",
+      "hash": "sha256-cR3iQUMwC+YSwXofbRnX9TCVtFSGn0bx/8ynjuFLGGE="
     },
     "x86_64-darwin": {
-      "version": "1.43.0",
-      "hash": "sha256-bQ+td/UvgXejw/j0C4rzJgpOwFfAbP2NyvOvGzneHng="
+      "version": "1.44.0",
+      "hash": "sha256-7cipWCrcnmUIQwS0QLHA7fwKtY6BoeULRW7/+CqMRgs="
     }
   },
   "opencode": {
